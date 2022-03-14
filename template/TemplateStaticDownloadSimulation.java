@@ -6,7 +6,7 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 
 import static simulationHelper.TestHelper.*;
 
-public class TemplateSimulation extends Simulation {
+public class TemplateStaticDownloadSimulation extends Simulation {
 
   // Define how many times to run the sequence; default 200
   // Can be passed using -DiterationCount=X via CLI or JAVA_OPTS
@@ -26,7 +26,7 @@ public class TemplateSimulation extends Simulation {
 
   // Set up and run simulation
   HttpProtocolBuilder httpProtocol = GetHttpConfig(baseUrl);
-  ScenarioBuilder scn = GetScenario(scenarioName, iterationCount, commonQuery, fileListName);
+  ScenarioBuilder scn = GetStaticDownloadScenario(scenarioName, iterationCount, commonQuery, fileListName);
   {
     setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
   }

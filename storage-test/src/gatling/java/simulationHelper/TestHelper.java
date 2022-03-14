@@ -35,7 +35,7 @@ public class TestHelper {
         return fileList;
     }
 
-    public static ScenarioBuilder GetScenario(String scenarioName, int iterationCount, String commonQuery, String fileListName) {
+    public static ScenarioBuilder GetStaticDownloadScenario(String scenarioName, int iterationCount, String commonQuery, String fileListName) {
         List<Map<String, Object>> fileList = GetFiles(iterationCount, fileListName);
         int fileCount = fileList.size();
 

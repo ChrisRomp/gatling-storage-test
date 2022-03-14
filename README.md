@@ -1,7 +1,7 @@
 # Gatling Storage Download Test
 
 ## Configuring the Simulations
-Place simulation class files in the `/simulations` folder. You can use the `/template/TemplateSimulation.java` file as a template.
+Place simulation class files in the `/simulations` folder.
 
 Follow the `[Name]Simulation` class naming convention, and likewise the `[Name]Simulation.java` filename convention.
 
