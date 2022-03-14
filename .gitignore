@@ -4,3 +4,5 @@ bin/
 reports/**/*
 !reports/.gitkeep
 temp
+files/**/*
+!files/.gitkeep
