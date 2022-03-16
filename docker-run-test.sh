@@ -13,4 +13,4 @@ docker run --name gatling-storage --rm -it \
 # ./docker-run-test.sh bash
 
 # To run this completely in the background, change -it to -d in the first line and 
-# monitor the progress with via docker logs
+# monitor the progress via docker logs

@@ -25,7 +25,9 @@ public class AzureEastUs2PremiumSimulation extends Simulation {
   String baseUrl = "https://" + accountName + ".blob.core.windows.net/";
 
   // Use for appending SAS tokens, etc., to each call
-  String commonQuery = System.getProperty("azureSasToken");
+  String commonQuery = System.getProperty("azureSasToken",
+    System.getenv("AZURE_SAS_TOKEN")
+  );
 
   // Upload headers
   static Map<String, String> uploadHeaders = new HashMap<>();
