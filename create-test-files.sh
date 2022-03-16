@@ -1,6 +1,6 @@
 #!/bin/bash
 declare filecount=200 # how many of each file
-declare filesizes=('1MB' '2MB' '3MB' '4MB', '5MB', '10MB', '20MB', '50MB', '100MB') # array of file sizes to generate
+declare filesizes=('1MB' '2MB' '3MB' '4MB' '5MB' '10MB' '20MB' '50MB' '100MB') # array of file sizes to generate
 declare filelist='./files/fileList.csv' # CSV file list
 
 make_files () {
@@ -12,7 +12,8 @@ make_files () {
     for (( i=0; i<$1; i++ ))
     do
         head -c $size </dev/urandom >./files/$2.$i
-        echo "$2,/$2.$i" >> $filelist
+        echo "$2.$i,/$2.$i" >> $filelist
+        echo "  $2.$i"
     done
 }
 
@@ -29,3 +30,5 @@ for filesize in "${filesizes[@]}"
 do
     make_files $filecount $filesize
 done
+
+echo "Done."
