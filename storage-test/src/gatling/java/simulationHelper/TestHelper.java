@@ -65,7 +65,10 @@ public class TestHelper {
         ScenarioBuilder scn = scenario(scenarioName)
             .foreach(Arrays.asList(filesArray), "file").on(
                 repeat(iterationCount, "i").on(
-                    exec(http("#{file}").get(folderUrl + "/#{file}.#{i}" + commonQuery))
+                    exec(http("#{file}-Download")
+                    .get(folderUrl + "/#{file}.#{i}" + commonQuery)
+                    .check(status().is(200))
+                    )
                 )
             )
             .pause(1);
@@ -81,7 +84,7 @@ public class TestHelper {
         ScenarioBuilder scn = scenario(scenarioName)
             .foreach(Arrays.asList(filesArray), "file").on(
                 repeat(iterationCount, "i").on(
-                    exec(http("#{file}" + "-Upload")
+                    exec(http("#{file}-Upload")
                         .put(folderUrl + "/#{file}.#{i}" + commonQuery)
                         .headers(headers)
                         .body(RawFileBody(localSourcePath + "/#{file}.#{i}"))
@@ -93,13 +96,13 @@ public class TestHelper {
         return scn;
     }
 
-    public static ScenarioBuilder GetAwsPresignedSequencedUploadScenario(String scenarioName, int iterationCount, String commonQuery, String folderPath, String[] filesArray, String sourcePath, S3Presigner presigner, String bucketName) {
+    public static ScenarioBuilder GetAwsPresignedSequencedUploadScenario(String scenarioName, int iterationCount, String commonQuery, String folderPath, String[] filesArray, String sourcePath, Map<String, String> headers, S3Presigner presigner, String bucketName) {
 
         String localSourcePath = sourcePath.isEmpty() ? "files" : sourcePath;
 
         // Generate files list with presigned URLs
         ArrayList<Map<String, Object>> fileMapList = new ArrayList<Map<String, Object>>();
-        
+
         for (String file : filesArray) {
             for (int i = 0; i < iterationCount; i++) {
                 String fileName = file + "." + i;
@@ -122,7 +125,7 @@ public class TestHelper {
                 // .foreach(fileMapList, "file").on(
                     .exec(http("#{fileType}" + "-Upload")
                         .put("#{url}" + commonQuery)
-                        .header("content-type", "application/octet-stream")
+                        .headers(headers)
                         .body(RawFileBody(localSourcePath + "/#{fileName}"))
                         .check(status().is(200))
                     )
