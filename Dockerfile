@@ -8,6 +8,9 @@ VOLUME /app/src/gatling/java/storageSimulation
 # Resource Files including fileList.csv
 VOLUME /app/src/gatling/resources
 
+# Source Files folder
+VOLUME /app/files
+
 # Gatling results
 VOLUME /app/build/reports
 
