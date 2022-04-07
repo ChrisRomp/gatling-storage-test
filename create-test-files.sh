@@ -31,4 +31,5 @@ do
     make_files $filecount $filesize
 done
 
+echo ""
 echo "Done."
