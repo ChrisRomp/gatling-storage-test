@@ -13,7 +13,7 @@ public class AzureEastUs2PremiumSimulation extends Simulation {
 
   // Define how many times to run the sequence; default 200
   // Can be passed using -DiterationCount=X via CLI or JAVA_OPTS
-  Integer iterationCount = Integer.getInteger("iterationCount", 2);
+  Integer iterationCount = Integer.getInteger("iterationCount", 200);
 
   // Scenario Name
   String scenarioName = "Storage-Test-Azure-Template";
