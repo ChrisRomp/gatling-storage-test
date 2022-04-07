@@ -13,7 +13,7 @@ make_files () {
     do
         head -c $size </dev/urandom >./files/$2.$i
         echo "$2.$i,/$2.$i" >> $filelist
-        echo "  $2.$i"
+        printf "  $2.$i     \r"
     done
 }
 
